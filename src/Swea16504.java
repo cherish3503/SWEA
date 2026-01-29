@@ -1,6 +1,9 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class Swea16504 {
@@ -17,14 +20,14 @@ public class Swea16504 {
 				arr[j] = Integer.parseInt(st.nextToken());
 			}
 			int[][] board = makeBoard(arr, 100);
-			Arrays.stream(board).forEach(bb -> {Arrays.stream(bb).forEach(v->System.out.print(v + " ")); System.out.println();});
-			System.out.println();
+//			Arrays.stream(board).forEach(bb -> {Arrays.stream(bb).forEach(v->System.out.print(v + " ")); System.out.println();});
+//			System.out.println();
 			
 			board = rotate(board);
-			Arrays.stream(board).forEach(bb -> {Arrays.stream(bb).forEach(v->System.out.print(v + " ")); System.out.println();});
-			System.out.println();
+//			Arrays.stream(board).forEach(bb -> {Arrays.stream(bb).forEach(v->System.out.print(v + " ")); System.out.println();});
+//			System.out.println();
 //			
-//			System.out.println(maxFall(board));
+			System.out.println("#" + (i+1) + " " + maxFall(board));
 		}
 		
 		
@@ -37,30 +40,11 @@ public class Swea16504 {
 		int width = board[0].length;
 		int[][] result = new int[width][height];
 		
-//		//transpose
-//		for(int r=0; r<height; ++r) {
-//			for(int c=0; c<length; ++c) {
-//				int temp = board[r][c];
-//				result[r][c] = board[c][r];
-//				result[c][r] = temp;
-//			}
-//		}
-		
-//		//reverse
-//		
-//		for(int r=0; r<size; ++r) {
-//			for(int c=0; c<size/2; ++c) {
-//				int temp = board[r][c];
-//				board[r][c] = board[r][size-1-c];
-//				board[r][size-1-c] = temp;
-//			}
-//		}	
+
 		
 		
 		for(int r=0; r<height; ++r) {
 			for(int c=0; c<width; ++c) {
-//				int temp = board[r][c];
-//				result[r][c] = board[c][r];
 				result[c][r] = board[r][c];
 			}
 		}
@@ -69,8 +53,8 @@ public class Swea16504 {
 		for(int r=0; r<width; ++r) {
 			for(int c=0; c<height/2; ++c) {
 				int temp = result[r][c];
-				result[r][c] = board[r][height-1-c];
-				board[r][height-1-c] = temp;
+				result[r][c] = result[r][height-1-c];
+				result[r][height-1-c] = temp;
 			}
 		}	
 	
@@ -99,24 +83,26 @@ public class Swea16504 {
 	
 	public static int maxFall(int[][] board) {
 		int max = 0;
-		int size = board.length;
+		int height = board.length;
+		int width = board[0].length;
 		
 		
-		for(int c=0; c<size; ++c) {
-			int cnt = 0;
-			boolean isBox = false; 
-			for(int r=0; r<size; ++r) {
-				if(isBox && board[r][c] == 0) {
-					cnt++;
-					max = Math.max(max, cnt);
-				}
-				else {
-					isBox = true;
-					cnt = 0;
-				}
+		
+		
+	for(int c=0; c<width; ++c) {
+		List<Integer> heightList = new ArrayList<>();
+		for(int r=0; r<height; ++r) {
+			if(board[r][c] == 1) {
+				heightList.add(height-1-r);
 			}
 		}
+		int cntBox = heightList.size();
+		for(int i=0; i< cntBox; ++i) {
+			max = Math.max(heightList.get(i)-(cntBox-i-1), max);
+		}
 		
+		
+	}
 		
 		
 		
