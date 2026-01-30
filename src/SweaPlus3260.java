@@ -24,7 +24,10 @@ public class SweaPlus3260 {
 			
 			
 			for(int i=0, size=strA.length(); i<size; ++i) {
-				dq1.add(strA.getCharAt(size-1-i));
+				dq1.add(strA.charAt(i) - '0');
+			}
+			for(int i=0, size=strB.length(); i<size; ++i) {
+				dq2.add(strB.charAt(i) - '0');
 			}
 			
 			
@@ -64,7 +67,7 @@ public class SweaPlus3260 {
 				carry = carrySum(n1, n2, carry);
 			}
 			
-			System.out.println("#" + (ttt+1) + " " + sb.toString());
+			System.out.println("#" + (ttt+1) + " " + sb.reverse().toString());
 			
 			
 		}
