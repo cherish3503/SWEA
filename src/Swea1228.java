@@ -33,7 +33,7 @@ public class Swea1228 {
 						break;
 				}
 			}
-			
+
 			StringBuilder sb = new StringBuilder();
 			Iterator<Integer> it = cert.iterator();
 			for(int i=0; i<10; ++i) {
