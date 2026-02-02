@@ -38,7 +38,6 @@ public class Swea4193SwimmingFinal {
             dest[1] = Integer.parseInt(st.nextToken());
             
             System.out.println("#"+(test_case)+" " + swimFinal(board, now[0], now[1], dest[0], dest[1]));
-           
 		}
 	}
     
