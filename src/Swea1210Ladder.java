@@ -2,9 +2,6 @@ import java.util.*;
 import java.io.*;
 
 public class Swea1210Ladder {
-	enum Direction{
-		up,left,rigth;
-	}
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
@@ -29,30 +26,11 @@ public class Swea1210Ladder {
 					board[r][c] = e;
 				}
 			}
-			
-			
 			System.out.println("#" +(test+1) +" " + upLadder(board, destR, destC, 2));
-			
-			
-			
 		}
 	}
 	
-	/*
-1
-1 0 0 0 1 0 1 0 0 1
-1 0 0 0 1 0 1 1 1 1
-1 0 0 0 1 0 1 0 0 1
-1 0 0 0 1 1 1 0 0 1
-1 0 0 0 1 0 1 0 0 1
-1 1 1 1 1 0 1 1 1 1
-1 0 0 0 1 0 1 0 0 1
-1 1 1 1 1 0 1 0 0 1
-1 0 0 0 1 1 1 0 0 1
-1 0 0 0 1 0 1 0 0 2
 
-	 */
-	
 	
 	
 	
@@ -64,7 +42,6 @@ public class Swea1210Ladder {
 		}
 		
 		int[] dir = new int[]{-1,1}; // left:0, right:1
-		
 		
 		for(int i=0; i<dir.length; ++i) { //좌우
 			if(direction != 2 && direction != i) {
@@ -79,10 +56,25 @@ public class Swea1210Ladder {
 			
 			if(board[nr][nc] == 1) {
 				return upLadder(board, nr, nc, i);
-				
 			}
 		}
 
 		return upLadder(board, r-1, c, 2);
 	}
 }
+
+/*
+1
+1 0 0 0 1 0 1 0 0 1
+1 0 0 0 1 0 1 1 1 1
+1 0 0 0 1 0 1 0 0 1
+1 0 0 0 1 1 1 0 0 1
+1 0 0 0 1 0 1 0 0 1
+1 1 1 1 1 0 1 1 1 1
+1 0 0 0 1 0 1 0 0 1
+1 1 1 1 1 0 1 0 0 1
+1 0 0 0 1 1 1 0 0 1
+1 0 0 0 1 0 1 0 0 2
+
+ */
+
