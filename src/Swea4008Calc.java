@@ -6,7 +6,6 @@ public class Swea4008Calc {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 		
-		
 		int T = Integer.parseInt(br.readLine());
 		for(int test=0; test<T; ++test) {
 			
@@ -27,10 +26,7 @@ public class Swea4008Calc {
 				cards[i] = Integer.parseInt(st.nextToken());
 			}
 			System.out.println("#" +(test+1) +" " + getMax(cards, opPerm));
-
 		}
-		
-		
 	}
 	
 	private static boolean nextPerm(int[] arr) {
