@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.io.*;
 
@@ -25,21 +24,21 @@ public class Swea5644Wireless {
 			
 			for(int i=0; i<cntBC; ++i) {
 				st = new StringTokenizer(br.readLine());
-				int x = Integer.parseInt(st.nextToken());
-				int y = Integer.parseInt(st.nextToken());
+				int x = Integer.parseInt(st.nextToken())-1;
+				int y = Integer.parseInt(st.nextToken())-1;
 				int c = Integer.parseInt(st.nextToken());
 				int p = Integer.parseInt(st.nextToken());
 				bcList[i] = new int[] {x,y,c,p};
 			}
 			
 			
-			System.out.println(simulation(bcList, moveA, moveB, playerA, playerB));
+			System.out.println("#" + (test+1) + " " + simulation(bcList, moveA, moveB, playerA, playerB));
 		}
 	}
 	
 	private static int simulation(int[][] bcList, int[] moveA, int[] moveB, int[] playerA, int[] playerB) {
 		int M = moveA.length;
-		int sum =0;
+		int sum = getP(bcList, playerA, playerB);
 		for(int i=0; i<M; ++i) {
 			move(playerA, moveA[i]);
 			move(playerB, moveB[i]);
