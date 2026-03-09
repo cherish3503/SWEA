@@ -1,8 +1,8 @@
-import java.io.*;
+
 import java.util.*;
+import java.io.*;
 
-public class Swea3289Disjoint {
-
+public class Swea7469Village {
 	static int[] parents; 
 	static int[] ranks;
 	public static void main(String[] args) throws Exception{
@@ -14,28 +14,27 @@ public class Swea3289Disjoint {
 			
 			
 			st = new StringTokenizer(br.readLine());
-			int n = Integer.parseInt(st.nextToken());
-			int m = Integer.parseInt(st.nextToken());
+			int N = Integer.parseInt(st.nextToken());
+			int M = Integer.parseInt(st.nextToken());
 			
-			parents = new int[n+1];
-			ranks = new int[n+1];
-			for(int i=0; i<=n; ++i) parents[i] = i;
+			parents = new int[N+1];
+			ranks = new int[N+1];
+			for(int i=1; i<=N; ++i) parents[i] = i;
 			
-			StringBuilder sb = new StringBuilder();
-			for(int i=0; i<m; ++i) {
+			for(int i=0; i<M; ++i) {
 				st = new StringTokenizer(br.readLine());
-				int cmd = Integer.parseInt(st.nextToken());
 				int a = Integer.parseInt(st.nextToken());
 				int b = Integer.parseInt(st.nextToken());
-				if(cmd == 0) union(a,b);
-
-				else if(cmd == 1) {
-					if(isSameSet(a,b)) sb.append(1);
-					else sb.append(0);
-				}
+				union(a,b);
 			}
 			
-			System.out.println("#" + test + " " + sb);
+			Set<Integer> set = new HashSet<>();
+			for(int i=1; i<=N; ++i) {
+				set.add(getRoot(i));
+			}
+			
+			
+			System.out.println("#" + test + " " + set.size());
 		}
 	}
 	
