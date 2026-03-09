@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-
+/*
 public class SweaApple {
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -39,3 +39,4 @@ public class SweaApple {
 		return 0;
 	}
 }
+*/
