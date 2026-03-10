@@ -5,7 +5,6 @@ public class Swea1210Ladder {
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
-		
 		int T = 10;
 		int size = 100;
 		for(int test=0; test<T; ++test) {
