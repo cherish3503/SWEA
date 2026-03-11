@@ -93,47 +93,7 @@ public class Swea2382Micro {
 			System.out.println();
 		}
 	}
-	
-//	private static void moveAndCrush(List<Micro> microLs) {
-//		Map<Integer, Integer> posCnt = new HashMap<>(); // hash : cnt  미생물이 도착한 지점에 도착한 미생물 수
-//		Set<Micro> remSet = new HashSet<>();
-//		for(Micro micro : microLs) {
-//			micro.move();
-//			if(micro.row==0 || micro.col==0 || micro.row==N-1 || micro.col==N-1) {
-//				micro.atBorder();
-//				if(micro.microN == 0) remSet.add(micro); // 경계에서 반이 되었을때 수가 0이면 삭제
-//			}
-//		}
-//
-////		microLs.removeIf(m -> remSet.contains(m));
-//		
-//		for(Micro micro : microLs) { // 미생물이 도착한 지점에 대해서 개수를 센다.
-//			int hash = (micro.row<<10) | micro.col; // 10비트씩 사용
-//			posCnt.put(hash, posCnt.getOrDefault(hash, 0)+1);
-//		}
-//		
-//		for(int hash : posCnt.keySet()) {
-//			if(posCnt.get(hash) > 1) { // 2개이상의 도착한 장소
-//				List<Micro> crushMicros = new ArrayList<>(); // 해당 좌표에 있는 미생물 군집은 저장
-//				for(Micro micro : microLs) { // 각 지점에 대해서 모든 미생물을 순회
-//					int mHash = (micro.row<<10) | micro.col;
-//					if(mHash == hash) {
-//						crushMicros.add(micro);
-//						remSet.add(micro); // 모두 삭제 (가장 큰 것은 아래에서 다시 뺀다)
-//					}
-//				}
-//				
-//				remSet.remove(crush(crushMicros)); // 가장 큰 것 제외 
-//			}
-//		}
-//
-//		microLs.removeIf(m -> remSet.contains(m)); // 한번에 삭제
-//		
-//		
-//	}
-	
-	
-	
+
 	
 	
 	
@@ -147,8 +107,6 @@ public class Swea2382Micro {
 				if(micro.microN == 0) remSet.add(micro); // 경계에서 반이 되었을때 수가 0이면 삭제
 			}
 		}
-
-//		microLs.removeIf(m -> remSet.contains(m));
 		
 		for(Micro micro : microLs) { // 미생물이 도착한 지점에 대해서 개수를 센다.
 			int hash = (micro.row<<10) | micro.col; // 10비트씩 사용
