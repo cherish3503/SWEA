@@ -102,7 +102,6 @@ public class CodeTree25_1_1 {
         }
         representLs.sort((p1,p2) -> cmpRepresent(p1,p2));
         
-
     }
 
     private static void evening(){
