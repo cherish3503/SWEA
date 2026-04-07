@@ -8,7 +8,7 @@ public class CodeTree25_1_1 {
     private static int[] parent;
     private static int[][] F;
     private static int[][] B;
-    private static PriorityQueue<int[]> representPq;
+    private static List<int[]> representLs;
     private static int[][] dirArr = {{-1,0},{1,0},{0,-1},{0,1}}; // udlr
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -18,21 +18,22 @@ public class CodeTree25_1_1 {
         N = Integer.parseInt(st.nextToken());
         int T = Integer.parseInt(st.nextToken());
         parent = new int[N*N];
-        for(int i=0; i<N*N; ++i) parent[i] = i;
+//        for(int i=0; i<N*N; ++i) parent[i] = i;
 
         F = new int[N][N];
         B = new int[N][N];
 
-        representPq = new PriorityQueue<int[]>((p1,p2)-> {
-            if(Integer.bitCount(F[p1[0]][p1[1]]) == Integer.bitCount(F[p2[0]][p2[1]])){
-                if(B[p1[0]][p1[1]] == B[p2[0]][p2[1]]){
-                    if(p1[0] == p2[0]) return Integer.compare(p1[1], p2[1]);
-                    else return Integer.compare(p1[0], p2[0]);
-                }
-                else return Integer.compare(B[p2[0]][p2[1]], B[p1[0]][p1[1]]);
-            }
-            else return Integer.compare(Integer.bitCount(F[p1[0]][p1[1]]), Integer.bitCount(F[p2[0]][p2[1]]));
-        });
+//        representPq = new PriorityQueue<int[]>((p1,p2)-> {
+//            if(Integer.bitCount(F[p1[0]][p1[1]]) == Integer.bitCount(F[p2[0]][p2[1]])){
+//                if(B[p1[0]][p1[1]] == B[p2[0]][p2[1]]){
+//                    if(p1[0] == p2[0]) return Integer.compare(p1[1], p2[1]);
+//                    else return Integer.compare(p1[0], p2[0]);
+//                }
+//                else return Integer.compare(B[p2[0]][p2[1]], B[p1[0]][p1[1]]);
+//            }
+//            else return Integer.compare(Integer.bitCount(F[p1[0]][p1[1]]), Integer.bitCount(F[p2[0]][p2[1]]));
+//        });
+//        representLs = new ArrayList<>();
 
         for(int i=0; i<N; ++i){
             String line = br.readLine();
@@ -60,6 +61,7 @@ public class CodeTree25_1_1 {
     private static void simulation(int T){
         for(int i=0; i<T; ++i){
             for(int j=0; j<N*N; ++j) parent[j] = j;
+            representLs = new ArrayList<>();
             morning();
             lunch();
             evening();
@@ -96,21 +98,26 @@ public class CodeTree25_1_1 {
             B[i/N][i%N]--;
         }
         for(int rep : repSet){
-            representPq.offer(new int[]{rep/N, rep%N});
+            representLs.add(new int[]{rep/N, rep%N});
         }
+        representLs.sort((p1,p2) -> cmpRepresent(p1,p2));
+        
 
     }
 
     private static void evening(){
         Set<Integer> defSet = new HashSet<>();
 
-        while(!representPq.isEmpty()){
-            int[] cur = representPq.poll();
+        for(int[] cur : representLs){
+//            int[] cur = representPq.poll();
 
             int r = cur[0];
             int c = cur[1];
-             System.out.println(r + " " + c);
-            if(defSet.contains(r*N+c)) continue;
+//             System.out.println(r + " " + c);
+            if(defSet.contains(r*N+c)) {
+//            	System.out.println("--");
+            	continue;
+            }
             int dir = B[r][c]%4; //udlr
             int nr = r;
             int nc = c;
@@ -152,7 +159,17 @@ public class CodeTree25_1_1 {
         for(int i : orderToBit) sb.append(sumB[i]).append(" ");
         System.out.println(sb);
     }
-
+    
+    private static int cmpRepresent(int[] p1, int[] p2) {
+        if(Integer.bitCount(F[p1[0]][p1[1]]) == Integer.bitCount(F[p2[0]][p2[1]])){
+            if(B[p1[0]][p1[1]] == B[p2[0]][p2[1]]){
+                if(p1[0] == p2[0]) return Integer.compare(p1[1], p2[1]);
+                else return Integer.compare(p1[0], p2[0]);
+            }
+            else return Integer.compare(B[p2[0]][p2[1]], B[p1[0]][p1[1]]);
+        }
+        else return Integer.compare(Integer.bitCount(F[p1[0]][p1[1]]), Integer.bitCount(F[p2[0]][p2[1]]));
+    }
 
 
 
